@@ -9,7 +9,7 @@ class KandidatController extends Controller
     // Fungsi aksi untuk menampilkan halaman tambah kandidat
     public function create()
     {
-        return view('kandidat.buat_kandidat');
+        return view('create');
     }
 
     // Fungsi aksi untuk menyimpan data kandidat dari form
