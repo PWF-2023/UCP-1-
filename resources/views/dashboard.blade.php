@@ -6,10 +6,24 @@ $kandidat = DB::table('kandidat')->get();
 $user = Auth::user();
 ?>
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
+
 <head>
     <title>Dashboard</title>
     <style>
+    /* Tema Light Mode */
+    [data-theme="light"] {
+        /* Ganti warna latar belakang, teks, atau elemen lainnya sesuai kebutuhan */
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    /* Tema Dark Mode */
+    [data-theme="dark"] {
+        /* Ganti warna latar belakang, teks, atau elemen lainnya sesuai kebutuhan */
+        background-color: #333;
+        color: #fff;
+    }
         * {
             box-sizing: border-box;
         }
@@ -171,6 +185,19 @@ $user = Auth::user();
         }
     </style>
 </head>
+<script>
+    function setSystemPreference(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }
+
+    // Atur tema berdasarkan preferensi yang disimpan pada local storage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setSystemPreference(savedTheme);
+    }
+</script>
+
 <body>
     <header class="header">
         <h1>E-Voting Dashboard</h1>
@@ -185,6 +212,7 @@ $user = Auth::user();
                 </li>
             </ul>
         </nav>
+
     </header>
 
     <div class="container">
@@ -260,14 +288,15 @@ $user = Auth::user();
 
 
 
-    <footer class="footer">
-        &copy; 2023 E-Voting. All rights reserved.
-        <div class="system-preference">
-            <button class="btn" onclick="setSystemPreference('auto')">Auto Mode</button>
-            <button class="btn" onclick="setSystemPreference('dark')">Dark Mode</button>
-            <button class="btn" onclick="setSystemPreference('light')">Light Mode</button>
-        </div>
-    </footer>
+<footer class="footer">
+    &copy; 2023 E-Voting. All rights reserved.
+    <div class="system-preference">
+        <button class="btn" onclick="setSystemPreference('auto')">Auto Mode</button>
+        <button class="btn" onclick="setSystemPreference('dark')">Dark Mode</button>
+        <button class="btn" onclick="setSystemPreference('light')">Light Mode</button>
+    </div>
+</footer>
+
 
     <script>
     // Fungsi untuk menangani voting
