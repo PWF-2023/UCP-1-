@@ -4,12 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KandidatController;
 
-// Rute untuk halaman utama
 Route::get('/', function () {
     return view('home');
 });
-
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -21,10 +18,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
-
-    Route::get('/kandidat/create', 'KandidatController@create')->name('kandidat.create');
-
+    Route::get('/kandidat/create', [KandidatController::class, 'create'])->name('kandidat.create');
     Route::post('/kandidat', [KandidatController::class, 'store'])->name('kandidat.store');
+    Route::get('/pemilihan', [PemilihanController::class, 'index'])->name('pemilihan.index');
+    // Rute untuk halaman sukses pemilihan
+    Route::get('/pemilihan/success', [PemilihanController::class, 'success'])->name('pemilihan.success');
 });
 
 Route::middleware('admin')->group(function () {

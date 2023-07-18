@@ -222,7 +222,7 @@ $user = Auth::user();
             <hr>
             @if(Auth::user()->role === 'admin')
                 <h3>Manajemen Kandidat</h3>
-                <a href="/kandidat/create" class="btn">Tambah Kandidat</a>
+                <a href="/create" class="btn">Tambah Kandidat</a>
                 <h3>Lihat Jumlah Suara Kandidat</h3>
                 <a href="/kandidat" class="btn">Tabel Suara Kandidat</a>
                 <hr>
